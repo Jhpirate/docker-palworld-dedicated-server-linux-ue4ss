@@ -24,8 +24,10 @@ function start_server() {
 
     # Check if we are using UE4SS and preload libUE4SS.so else start normal
     if [[ "$UE4SS_ENABLED" == "true" ]]; then
+    	ew ">> MODED STARTUP (MODDED)"
     	LD_PRELOAD=./Pal/Binaries/Linux/libUE4SS.so ./PalServer.sh "${START_OPTIONS[@]}"
     else
+    	ew ">> NORMAL STARTUP (NON MODDED)"
     	./PalServer.sh "${START_OPTIONS[@]}"
     fi
 }
