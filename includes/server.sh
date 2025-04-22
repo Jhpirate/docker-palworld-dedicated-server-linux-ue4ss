@@ -30,8 +30,11 @@ function start_server() {
 #     	ew ">> NORMAL STARTUP (NON MODDED)"
 #     	./PalServer.sh "${START_OPTIONS[@]}"
 #     fi
-	es "Moded statrtup"
- 	LD_PRELOAD=./Pal/Binaries/Linux/libUE4SS.so ./PalServer.sh "${START_OPTIONS[@]}"
+	es "Moded startup. Bypass PalServer.sh as we cant send custom preloads"
+
+	export LD_PRELOAD="$(realpath ./Pal/Binaries/Linux/libUE4SS.so)"
+	chmod +x ./Pal/Binaries/Linux/PalServer-Linux-Shipping
+	./Pal/Binaries/Linux/PalServer-Linux-Shipping Pal "${START_OPTIONS[@]}"
 }
 
 function stop_server() {
